@@ -1,0 +1,9 @@
+{
+  "name": "codex-openai-bridge",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "OpenAI-compatible HTTP proxy for codex app-server",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
