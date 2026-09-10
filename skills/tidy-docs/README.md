@@ -2,7 +2,7 @@
 
 Clean up a human-facing doc so a person can scan and read it: plain language, consistent terms, working links, and a structure that matches the content. Style target is B2 English written as ASD-STE100 Simplified Technical English.
 
-Small, line-traceable changes apply on their own. Rewrites, moves, and reorders are listed for you to accept or reject, because those diffs are hard to review.
+Language, terminology, heading, link, and formatting fixes apply directly. Restructuring and duplicate removal are proposed first, for you to accept or reject.
 
 ## Usage
 
@@ -15,7 +15,7 @@ Small, line-traceable changes apply on their own. Rewrites, moves, and reorders 
 
 - A doc has grown organically and is now hard to scan.
 - Terminology drifted away from `CONTEXT.md`.
-- You want a readable diff, not a wholesale rewrite you cannot review.
+- Sentences have grown long and you want them cut to size.
 
 ## Notes
 
