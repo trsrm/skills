@@ -29,6 +29,7 @@ function checkAuth(req, res) {
   const auth = req.headers['authorization'] ?? '';
   const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
   if (token !== API_KEY) {
+    console.error('Invalid API key:', token);
     jsonError(res, 401, 'Invalid API key', 'authentication_error');
     return false;
   }
@@ -204,11 +205,13 @@ async function handleChatCompletions(req, res) {
     }).catch(err => ({ error: err }));
 
     if (result.error) {
+      console.error('turn failed:', result.error.message);
       return jsonError(res, 502, `codex turn failed: ${result.error.message}`, 'server_error');
     }
 
     const turn = result.turn;
     if (turn?.status === 'failed') {
+      console.error('turn failed:', turn.error?.message);
       return jsonError(res, 502, turn.error?.message ?? 'turn failed', 'server_error');
     }
 
@@ -233,6 +236,8 @@ async function handleChatCompletions(req, res) {
 }
 
 const server = http.createServer((req, res) => {
+  console.log(`${req.method} ${req.url} from ${req.socket.remoteAddress}`);
+
   if (!checkAuth(req, res)) return;
 
   const url = new URL(req.url, `http://${HOST}`);
@@ -245,6 +250,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === 'POST' && url.pathname === '/v1/chat/completions') {
+    console.log(`Handling chat completion request from ${req.socket.remoteAddress}`);
     handleChatCompletions(req, res).catch(err => {
       console.error('unhandled error in chat completions:', err);
       if (!res.headersSent) jsonError(res, 500, err.message, 'server_error');
@@ -262,7 +268,7 @@ client.connect()
     server.listen(PORT, HOST, () => {
       console.log(`codex-openai-bridge listening on http://${HOST}:${PORT}`);
       console.log(`API key: ${API_KEY}`);
-      console.log(`Default model: ${DEFAULT_MODEL}`);
+      console.log(`A Default model: ${DEFAULT_MODEL}`);
     });
   })
   .catch(err => {
