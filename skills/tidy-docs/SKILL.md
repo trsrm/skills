@@ -12,9 +12,9 @@ Targets: the paths given, or the changed docs in `git diff`.
 
 1. Read each target in full. Read `CONTEXT.md` if it exists.
 2. Warn on unstaged or untracked targets. Staged-only is fine. Use only `git status --porcelain`.
-3. Run the Fix passes.
-4. Run the Detect passes.
-5. Report one line per pass, empty ones included, then the findings as a numbered list.
+3. Run the Fix passes and apply them.
+4. Run the Detect passes and note the findings.
+5. Report one line per Fix pass, then the Detect findings as a numbered list.
 6. Stop and wait for the answer. Apply only the findings that are accepted.
 
 ## Fix passes
