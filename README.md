@@ -10,6 +10,7 @@ Claude Code skills — model-facing instruction files invocable via `/skill-name
 
 | Skill | Description |
 |---|---|
+| [doc-workflow](skills/doc-workflow/SKILL.md) | Tidy documents, remove safe low-signal content, and apply ASD rules while preserving language and domain terminology. |
 | [tidy-docs](skills/tidy-docs/README.md) | Clean up a human-facing doc — plain language, scannable structure, consistent terms, working links. |
 | [trim-instructions](skills/trim-instructions/README.md) | Compress verbose instruction files (skills, prompts, CLAUDE.md) by stripping ballast while keeping all behavior-shaping signal. |
 
